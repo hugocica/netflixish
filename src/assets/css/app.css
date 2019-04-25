@@ -1,0 +1,15 @@
+.main-container:before {
+  content: "";
+  position: absolute;
+  display: block; }
+
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden; }
+  .main-container:before {
+    background: radial-gradient(circle, transparent, black);
+    width: 100%;
+    height: 100%; }
