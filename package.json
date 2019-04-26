@@ -5,7 +5,7 @@
     "dependencies": {
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
-        "react-scripts": "2.1.8"
+        "react-scripts": "^3.0.0"
     },
     "scripts": {
         "build-css": "node-sass-chokidar src/assets/sass/app.scss src/assets/css/app.css --output-style compressed",
@@ -17,6 +17,7 @@
         "eject": "react-scripts eject"
     },
     "devDependencies": {
+        "@material-ui/core": "^3.9.3",
         "axios": "^0.18.0",
         "bootstrap": "^4.3.1",
         "material-ui": "^0.20.2",
@@ -27,6 +28,7 @@
         "react-redux": "^5.0.7",
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
+        "react-swipeable-views": "^0.13.1",
         "redux": "^4.0.1",
         "redux-thunk": "^2.3.0"
     },

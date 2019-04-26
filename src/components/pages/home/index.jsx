@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {requestShows} from '../../../actions/shows';
 import {requestEpisodes} from '../../../actions/episodes';
 import LoadingRequisition from '../../loading';
+import ShowDetails from '../../show-infos';
 
 class HomePage extends Component {
     // constructor(props) {
@@ -34,8 +35,11 @@ class HomePage extends Component {
         }
 
         return(
-            <div className="main-container" style={{ backgroundImage: `url(${showBackground})` }}>
+            <div className="main" style={{ backgroundImage: `url(${showBackground})` }}>
 
+                <div className="main-container">
+                    <ShowDetails showDetails={ showInfos } />
+                </div>
 
             </div>
         );
