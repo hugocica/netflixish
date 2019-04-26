@@ -99,3 +99,9 @@
             margin-bottom: 5px; }
           .main .show-infos-details .tabs-content .actions-item p {
             margin-bottom: 0; }
+      .main .show-infos-details .tabs-content .cast {
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 0 10px;
+        padding: 15px 20px; }
+        .main .show-infos-details .tabs-content .cast:first-of-type {
+          margin-left: 0; }

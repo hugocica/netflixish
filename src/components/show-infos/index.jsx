@@ -32,7 +32,7 @@ class ShowDetails extends Component {
         if ( typeof cast !== typeof undefined ) {
 
             return cast.map((item, key) => {
-                return <Typography key={`cast-${key}`} className="tabs-content-typo">{item.Name}</Typography>
+                return <Typography key={`cast-${key}`} className="tabs-content-typo cast">{item.Name}</Typography>
             });
         }
     }
@@ -110,7 +110,7 @@ class ShowDetails extends Component {
                                 </div>
                             </div>
 
-                            <div className="tabs-content cast">
+                            <div className="tabs-content cast-wrapper">
                                 { this.listCast(showDetails.Cast) }
                             </div>
                         </SwipeableViews>
