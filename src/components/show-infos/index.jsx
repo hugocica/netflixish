@@ -37,66 +37,84 @@ class ShowDetails extends Component {
         }
     }
 
+    renderGenre = (_genre) => {
+        if ( typeof _genre !== typeof undefined ) {
+            return _genre.map((item, key) => {
+                return <span className="genre meta-info">{item.Title}</span>
+            })
+        }
+    }
+
     render() {
         const { showDetails } = this.props
 
         return(
-            <div className="show-infos-container">
-                <AppBar className="show-infos-tab" position="static" color="default">
-                    <Tabs
-                        value={this.state.value}
-                        onChange={this.handleChange}
-                        TabIndicatorProps={{
-                            style: {
-                                backgroundColor: "#4B9166"
-                            }
-                        }}
-                        textColor="primary"
-                        className="tabs-wrapper"
-                        >
-                        <Tab className="tab-item" label="Visão Geral" />
-                        <Tab className="tab-item" label="Elenco" />
-                        <img id="telecine-logo" src={TeleCineLogo} alt=""/>
-                    </Tabs>
-                </AppBar>
+            <div className="general-show-infos">
+                <div className="show-infos-meta">
+                    <Typography className="show-title">{showDetails.Title}</Typography>
+                    <div className="meta-content">
+                        { this.renderGenre(showDetails.Genres) }
+                        <span className="year meta-info">{showDetails.Year}</span>
+                    </div>
+                </div>
 
-                <div className="show-infos-details">
-                    <SwipeableViews
-                        axis='x'
-                        index={this.state.value}
-                        onChangeIndex={this.handleChangeIndex}
-                        className="show-infos-content"
-                        >
-                        <div className="tabs-content general">
-                            <div className="actions">
-                                <div className="actions-item">
-                                    <img src={ListIcon} alt=""/>
-                                    <p>Minha Lista</p>
+                <div className="show-infos-container">
+                    <AppBar className="show-infos-tab" position="static" color="default">
+                        <Tabs
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                            TabIndicatorProps={{
+                                style: {
+                                    backgroundColor: "#4B9166"
+                                }
+                            }}
+                            textColor="primary"
+                            className="tabs-wrapper"
+                            >
+                            <Tab className="tab-item" label="Visão Geral" />
+                            <Tab className="tab-item" label="Elenco" />
+                            <img id="telecine-logo" src={TeleCineLogo} alt=""/>
+                        </Tabs>
+                    </AppBar>
+
+                    <div className="show-infos-details">
+                        <SwipeableViews
+                            axis='x'
+                            index={this.state.value}
+                            onChangeIndex={this.handleChangeIndex}
+                            className="show-infos-content"
+                            >
+                            <div className="tabs-content general">
+                                <div className="actions">
+                                    <div className="actions-item">
+                                        <img src={ListIcon} alt=""/>
+                                        <p>Minha Lista</p>
+                                    </div>
+                                    <div className="actions-item">
+                                        <img src={AvaliarIcon} alt=""/>
+                                        <p>Avaliar</p>
+                                    </div>
+                                    <div className="actions-item">
+                                        <img src={GravarIcon} alt=""/>
+                                        <p>Gravar</p>
+                                    </div>
+                                    <div className="actions-item">
+                                        <img src={ShareIcon} alt=""/>
+                                        <p>Compartilhar</p>
+                                    </div>
                                 </div>
-                                <div className="actions-item">
-                                    <img src={AvaliarIcon} alt=""/>
-                                    <p>Avaliar</p>
-                                </div>
-                                <div className="actions-item">
-                                    <img src={GravarIcon} alt=""/>
-                                    <p>Gravar</p>
-                                </div>
-                                <div className="actions-item">
-                                    <img src={ShareIcon} alt=""/>
-                                    <p>Compartilhar</p>
+
+                                <div className="show-infos-details-sinopse">
+                                    <Typography className="section-title">Sinopse</Typography>
+                                    <Typography className="tabs-content-typo">{showDetails.Synopsis}</Typography>
                                 </div>
                             </div>
 
-                            <div className="show-infos-details-sinopse">
-                                <Typography className="section-title">Sinopse</Typography>
-                                <Typography className="tabs-content-typo">{showDetails.Synopsis}</Typography>
+                            <div className="tabs-content cast">
+                                { this.listCast(showDetails.Cast) }
                             </div>
-                        </div>
-
-                        <div className="tabs-content cast">
-                            { this.listCast(showDetails.Cast) }
-                        </div>
-                    </SwipeableViews>
+                        </SwipeableViews>
+                    </div>
                 </div>
             </div>
         );

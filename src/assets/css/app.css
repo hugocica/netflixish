@@ -1,4 +1,4 @@
-.main:before, .main .show-infos-tab:before {
+.main:before, .main .show-infos-meta .genre:after, .main .show-infos-tab:before {
   content: "";
   position: absolute;
   display: block; }
@@ -20,13 +20,32 @@
   .main-container {
     position: relative;
     z-index: 1; }
+  .main .show-infos-meta {
+    padding: 2rem 5rem; }
+    .main .show-infos-meta .show-title {
+      color: white;
+      font-family: "Nunito";
+      font-size: 3rem;
+      font-weight: 700; }
+    .main .show-infos-meta .meta-info {
+      color: rgba(255, 255, 255, 0.5);
+      position: relative;
+      font-family: "Nunito";
+      text-transform: uppercase;
+      letter-spacing: 1px; }
+    .main .show-infos-meta .genre {
+      margin-right: 20px; }
+      .main .show-infos-meta .genre:after {
+        content: '/';
+        top: 0;
+        right: -10px; }
   .main .show-infos-container {
     position: fixed;
     width: 100%;
     bottom: 0;
     background-color: #131719;
     color: white;
-    padding: 2.5rem 5rem; }
+    padding: 2rem 5rem; }
   .main .show-infos-tab {
     box-shadow: none;
     background-color: transparent;
@@ -43,7 +62,9 @@
         outline: none; }
     .main .show-infos-tab #telecine-logo {
       position: absolute;
-      right: 0; }
+      right: 0;
+      width: 45px;
+      opacity: .5; }
   .main .show-infos-details {
     display: flex; }
     .main .show-infos-details .tabs-content {

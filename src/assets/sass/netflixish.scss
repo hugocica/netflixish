@@ -22,6 +22,33 @@
     }
 
     .show-infos {
+        &-meta {
+            padding: 2rem 5rem;
+
+            .show-title {
+                color: white;
+                font-family: $main-font;
+                font-size: 3rem;
+                font-weight: 700;
+            }
+            .meta-info {
+                color: rgba(white, .5);
+                position: relative;
+                font-family: $main-font;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .genre {
+                margin-right: 20px;
+
+                &:after {
+                    @extend %bfaf;
+                    content: '/';
+                    top: 0;
+                    right: -10px;
+                }
+            }
+        }
         &-container {
             position: fixed;
             width: 100%;
@@ -29,7 +56,7 @@
             bottom: 0;
             background-color: $ac-darker;
             color: white;
-            padding: 2.5rem 5rem;
+            padding: 2rem 5rem;
         }
         &-tab {
             box-shadow: none;
@@ -54,6 +81,8 @@
             #telecine-logo {
                 position: absolute;
                 right: 0;
+                width: 45px;
+                opacity: .5;
             }
         }
         &-details {
