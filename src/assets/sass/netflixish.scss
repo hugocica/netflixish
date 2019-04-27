@@ -5,6 +5,11 @@
 
 body {
     background-color: $ac-darker;
+    overflow: hidden;
+
+    @include phone {
+        overflow: auto;
+    }
 }
 
 #loading-gif {
@@ -19,21 +24,24 @@ body {
     width: 100vw;
     height: 100vh;
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top right;
+    background-size: 100% auto;
+    background-position: top left;
     overflow: hidden;
 
-    @include desktop-1600 {
-        background-size: contain;
-    }
-    @include desktop-1366 {
-        background-size: auto 100%;
+    @include phone {
+        height: auto;
+        background-size: auto 108vh;
+        background-position: top center;
     }
     &:before {
         @extend %bfaf;
         background: radial-gradient(circle, transparent, black);
         width: 100%;
         height: 100%;
+
+        @include phone {
+            height: calc(100% + 30px);
+        }
     }
     &-container {
         position: relative;
@@ -46,6 +54,12 @@ body {
             right: 5rem;
             top: 2rem;
             width: 20px;
+            z-index: 999;
+            cursor: pointer;
+
+            @include phone {
+                right: 2rem;
+            }
         }
     }
 
@@ -77,18 +91,170 @@ body {
         &-wrapper {
             position: absolute;
             right: 0;
-            padding: 5rem 5rem;
+            padding: 5rem 5rem 0;
+            // height: 100vh;
+            max-width: 35vw;
+
+            @include desktop-1200 {
+                padding-right: 0;
+                max-width: 50vw;
+            }
+            @include phone {
+                position: relative;
+                max-width: 100vw;
+                width: 100vw;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                padding-top: 9rem;
+            }
+            &:before {
+                @extend %bfaf;
+                background: linear-gradient(90deg, transparent 5%, $ac-darker 95%);
+                width: 100vw;
+                height: 100%;
+                top: 0;
+                left: -40vw;
+
+                @include phone {
+                    content: none;
+                }
+            }
+            .tabs-wrapper {
+                button {
+                    min-width: 0;
+                    width: 70px;
+                }
+            }
+        }
+        &-list {
+            height: calc(100vh - 335px);
+
+            @include desktop-1200 {
+                height: calc(100vh - 368px);
+            }
+            @include phone {
+                height: auto;
+            }
+            .episode {
+                &-list {
+                    &-wrapper {
+                        // overflow-y: scroll;
+                    }
+                    &-item {
+                        padding: 0;
+
+                        &.collapsed {
+                            padding-right: 30px;
+                        }
+                    }
+                }
+                &-header {
+                    display: grid;
+                    grid-template-columns: 2fr 0.2fr 0.2fr;
+                    align-items: center;
+                }
+                &-duration {
+                    color: white;
+                    margin-right: 15px;
+
+                    @include desktop-1200 {
+                    }
+                }
+                &-preview {
+                    &-image {
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    .tabs-content {
+        display: flex;
+
+        @include phone {
+            flex-direction: column;
+        }
+        &-typo {
+            color: white;
+            font-size: 1rem;
+            font-family: $main-font;
+        }
+        .section-title {
+            color: white;
+            text-transform: uppercase;
+            font-size: 1rem;
+            font-family: $main-font;
+            letter-spacing: 2px;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            margin-right: 2rem;
+
+            @include phone {
+                // flex-wrap: wrap;
+                justify-content: center;
+                margin-right: 0;
+                margin-bottom: 2rem;
+                align-items: flex-start;
+            }
+            &-item {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                flex-direction: column;
+                margin: 0 8px;
+                color: rgba(white, .5);
+                cursor: pointer;
+                width: 90px;
+
+                &:first-of-type {
+                    margin-left: 0;
+                }
+                img {
+                    margin-bottom: 5px;
+                }
+                p {
+                    margin-bottom: 0;
+                    text-align: center;
+
+                    @include phone {
+                        font-size: .8rem;
+                    }
+                }
+            }
+        }
+        .cast {
+            background-color: rgba(white, .1);
+            margin: 0 10px;
+            padding: 15px 20px;
+
+            &:first-of-type {
+                margin-left: 0;
+            }
         }
     }
     .show-infos {
         &-meta {
             padding: 2rem 5rem;
 
+            @include phone {
+                padding-left: 2rem;
+                padding-right: 2rem;
+                padding-top: 3rem;
+                position: absolute;
+                top: 0;
+            }
             .show-title {
                 color: white;
                 font-family: $main-font;
                 font-size: 3rem;
                 font-weight: 700;
+
+                @include phone {
+                    font-size: 2rem;
+                }
             }
             .meta-info {
                 color: rgba(white, .5);
@@ -111,15 +277,20 @@ body {
         &-container {
             position: fixed;
             width: 100%;
-            // height: 20vh;
+            height: 207px;
             bottom: 0;
             background-color: $ac-darker;
             color: white;
             padding: 2rem 5rem;
 
+            @include desktop-1200 {
+                height: 240px;
+            }
             @include phone {
                 padding-left: 2rem;
                 padding-right: 2rem;
+                height: auto;
+                position: relative;
             }
         }
         &-tab {
@@ -134,74 +305,6 @@ body {
         }
         &-details {
             display: flex;
-
-            .tabs-content {
-                display: flex;
-
-                @include phone {
-                    flex-direction: column;
-                }
-                &-typo {
-                    color: white;
-                    font-size: 1rem;
-                    font-family: $main-font;
-                }
-                .section-title {
-                    color: white;
-                    text-transform: uppercase;
-                    font-size: 1rem;
-                    font-family: $main-font;
-                    letter-spacing: 2px;
-                }
-                .actions {
-                    display: flex;
-                    align-items: center;
-                    margin-right: 2rem;
-
-                    @include phone {
-                        // flex-wrap: wrap;
-                        justify-content: center;
-                        margin-right: 0;
-                        margin-bottom: 2rem;
-                        align-items: flex-start;
-                    }
-                    &-item {
-                        display: flex;
-                        align-items: center;
-                        justify-content: flex-start;
-                        flex-wrap: wrap;
-                        flex-direction: column;
-                        margin: 0 8px;
-                        color: rgba(white, .5);
-                        cursor: pointer;
-                        width: 90px;
-
-                        &:first-of-type {
-                            margin-left: 0;
-                        }
-                        img {
-                            margin-bottom: 5px;
-                        }
-                        p {
-                            margin-bottom: 0;
-                            text-align: center;
-
-                            @include phone {
-                                font-size: .8rem;
-                            }
-                        }
-                    }
-                }
-                .cast {
-                    background-color: rgba(white, .1);
-                    margin: 0 10px;
-                    padding: 15px 20px;
-
-                    &:first-of-type {
-                        margin-left: 0;
-                    }
-                }
-            }
         }
     }
 }
