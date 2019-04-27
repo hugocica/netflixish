@@ -4,16 +4,10 @@ import {requestShows} from '../../../actions/shows';
 import {requestEpisodes} from '../../../actions/episodes';
 import LoadingRequisition from '../../loading';
 import ShowDetails from '../../show-infos';
+import EpisodesInfo from '../../episodes-infos';
+import CloseIcon from '../../../assets/img/close-search-w.svg';
 
 class HomePage extends Component {
-    // constructor(props) {
-    //     super(props);
-    //
-    //     this.state = {
-    //         show
-    //     }
-    // }
-
     componentWillMount() {
         this.props.requestShows();
         this.props.requestEpisodes();
@@ -38,12 +32,13 @@ class HomePage extends Component {
             <div className="main" style={{ backgroundImage: `url(${showBackground})` }}>
 
                 <div className="main-container">
+                    <img src={CloseIcon} alt="" className="close-icon"/>
+                    <EpisodesInfo episodesInfos={ episodesInfos } />
                     <ShowDetails showDetails={ showInfos } />
                 </div>
 
             </div>
         );
-
     }
 }
 

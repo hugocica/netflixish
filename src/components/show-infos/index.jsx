@@ -4,9 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import TabContainer from './tabcontainer';
 import ListIcon from '../../assets/img/add-gray-s.svg';
-import AvaliarIcon from '../../assets/img/sad-gray-w.svg';
+import GoodAvaliarIcon from '../../assets/img/happy-gray-w.svg';
+import NeutroAvaliarIcon from '../../assets/img/neutral-gray-w.svg';
+import BadAvaliarIcon from '../../assets/img/sad-gray-w.svg';
 import GravarIcon from '../../assets/img/rec-gray-s.svg';
 import ShareIcon from '../../assets/img/share-gray-s.svg';
 import TeleCineLogo from '../../assets/img/logo-telecine.svg';
@@ -16,7 +17,8 @@ class ShowDetails extends Component {
         super(props);
 
         this.state = {
-            value: 0
+            value: 0,
+            rating: 'neutral'
         }
     }
 
@@ -40,13 +42,29 @@ class ShowDetails extends Component {
     renderGenre = (_genre) => {
         if ( typeof _genre !== typeof undefined ) {
             return _genre.map((item, key) => {
-                return <span className="genre meta-info">{item.Title}</span>
+                return <span key={`genre-${key}`} className="genre meta-info">{item.Title}</span>
             })
         }
     }
 
     render() {
-        const { showDetails } = this.props
+        const { showDetails } = this.props;
+
+        let ratingIcon;
+
+        if ( this.state.rating === 'neutral' ) {
+
+            ratingIcon = NeutroAvaliarIcon;
+
+        } else if ( this.state.rating === 'good' ) {
+
+            ratingIcon = GoodAvaliarIcon;
+
+        } else if ( this.state.rating === 'bad' ) {
+
+            ratingIcon = BadAvaliarIcon;
+
+        }
 
         return(
             <div className="general-show-infos">
@@ -59,7 +77,7 @@ class ShowDetails extends Component {
                 </div>
 
                 <div className="show-infos-container">
-                    <AppBar className="show-infos-tab" position="static" color="default">
+                    <AppBar className="show-infos-tab tabs-actions" position="static" color="default">
                         <Tabs
                             value={this.state.value}
                             onChange={this.handleChange}
@@ -73,7 +91,7 @@ class ShowDetails extends Component {
                             >
                             <Tab className="tab-item" label="Visão Geral" />
                             <Tab className="tab-item" label="Elenco" />
-                            <img id="telecine-logo" src={TeleCineLogo} alt=""/>
+                            {/*<img id="telecine-logo" src={TeleCineLogo} alt=""/>*/}
                         </Tabs>
                     </AppBar>
 
@@ -91,7 +109,7 @@ class ShowDetails extends Component {
                                         <p>Minha Lista</p>
                                     </div>
                                     <div className="actions-item">
-                                        <img src={AvaliarIcon} alt=""/>
+                                        <img src={ratingIcon} alt=""/>
                                         <p>Avaliar</p>
                                     </div>
                                     <div className="actions-item">

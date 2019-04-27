@@ -3,13 +3,32 @@
     font-size: 16px;
 }
 
+body {
+    background-color: $ac-darker;
+}
+
+#loading-gif {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
 .main {
     width: 100vw;
     height: 100vh;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
+    background-position: top right;
     overflow: hidden;
 
+    @include desktop-1600 {
+        background-size: contain;
+    }
+    @include desktop-1366 {
+        background-size: auto 100%;
+    }
     &:before {
         @extend %bfaf;
         background: radial-gradient(circle, transparent, black);
@@ -21,6 +40,46 @@
         z-index: 1;
     }
 
+    .close {
+        &-icon {
+            position: absolute;
+            right: 5rem;
+            top: 2rem;
+            width: 20px;
+        }
+    }
+
+    .tabs {
+        &-wrapper {
+            .tab-item {
+                color: white;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+        &-actions {
+            box-shadow: none;
+            background-color: transparent;
+            position: relative;
+
+            &:before {
+                @extend %bfaf;
+                background-color: rgba(white, .4);
+                width: 100%;
+                height: 2px;
+                bottom: 0;
+            }
+        }
+    }
+    .episodes {
+        &-wrapper {
+            position: absolute;
+            right: 0;
+            padding: 5rem 5rem;
+        }
+    }
     .show-infos {
         &-meta {
             padding: 2rem 5rem;
@@ -36,7 +95,7 @@
                 position: relative;
                 font-family: $main-font;
                 text-transform: uppercase;
-                letter-spacing: 1px;
+                letter-spacing: .5px;
             }
             .genre {
                 margin-right: 20px;
@@ -57,27 +116,15 @@
             background-color: $ac-darker;
             color: white;
             padding: 2rem 5rem;
+
+            @include phone {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
         }
         &-tab {
-            box-shadow: none;
-            background-color: transparent;
-            position: relative;
             margin-bottom: 2rem;
 
-            &:before {
-                @extend %bfaf;
-                background-color: rgba(white, .4);
-                width: 100%;
-                height: 2px;
-                bottom: 0;
-            }
-            .tab-item {
-                color: white;
-
-                &:focus {
-                    outline: none;
-                }
-            }
             #telecine-logo {
                 position: absolute;
                 right: 0;
@@ -91,6 +138,9 @@
             .tabs-content {
                 display: flex;
 
+                @include phone {
+                    flex-direction: column;
+                }
                 &-typo {
                     color: white;
                     font-size: 1rem;
@@ -108,6 +158,13 @@
                     align-items: center;
                     margin-right: 2rem;
 
+                    @include phone {
+                        // flex-wrap: wrap;
+                        justify-content: center;
+                        margin-right: 0;
+                        margin-bottom: 2rem;
+                        align-items: flex-start;
+                    }
                     &-item {
                         display: flex;
                         align-items: center;
@@ -126,7 +183,12 @@
                             margin-bottom: 5px;
                         }
                         p {
-                            margin-bottom: 0
+                            margin-bottom: 0;
+                            text-align: center;
+
+                            @include phone {
+                                font-size: .8rem;
+                            }
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-.main:before, .main .show-infos-meta .genre:after, .main .show-infos-tab:before {
+.main:before, .main .tabs-actions:before, .main .show-infos-meta .genre:after {
   content: "";
   position: absolute;
   display: block; }
@@ -7,12 +7,29 @@
   font-family: "Nunito";
   font-size: 16px; }
 
+body {
+  background-color: #131719; }
+
+#loading-gif {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center; }
+
 .main {
   width: 100vw;
   height: 100vh;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  background-position: top right;
   overflow: hidden; }
+  @media (max-width: 1600px) {
+    .main {
+      background-size: contain; } }
+  @media (max-width: 1366px) {
+    .main {
+      background-size: auto 100%; } }
   .main:before {
     background: radial-gradient(circle, transparent, black);
     width: 100%;
@@ -20,6 +37,28 @@
   .main-container {
     position: relative;
     z-index: 1; }
+  .main .close-icon {
+    position: absolute;
+    right: 5rem;
+    top: 2rem;
+    width: 20px; }
+  .main .tabs-wrapper .tab-item {
+    color: white; }
+    .main .tabs-wrapper .tab-item:focus {
+      outline: none; }
+  .main .tabs-actions {
+    box-shadow: none;
+    background-color: transparent;
+    position: relative; }
+    .main .tabs-actions:before {
+      background-color: rgba(255, 255, 255, 0.4);
+      width: 100%;
+      height: 2px;
+      bottom: 0; }
+  .main .episodes-wrapper {
+    position: absolute;
+    right: 0;
+    padding: 5rem 5rem; }
   .main .show-infos-meta {
     padding: 2rem 5rem; }
     .main .show-infos-meta .show-title {
@@ -32,7 +71,7 @@
       position: relative;
       font-family: "Nunito";
       text-transform: uppercase;
-      letter-spacing: 1px; }
+      letter-spacing: .5px; }
     .main .show-infos-meta .genre {
       margin-right: 20px; }
       .main .show-infos-meta .genre:after {
@@ -46,20 +85,12 @@
     background-color: #131719;
     color: white;
     padding: 2rem 5rem; }
+    @media (min-width: 319px) and (max-width: 767px) {
+      .main .show-infos-container {
+        padding-left: 2rem;
+        padding-right: 2rem; } }
   .main .show-infos-tab {
-    box-shadow: none;
-    background-color: transparent;
-    position: relative;
     margin-bottom: 2rem; }
-    .main .show-infos-tab:before {
-      background-color: rgba(255, 255, 255, 0.4);
-      width: 100%;
-      height: 2px;
-      bottom: 0; }
-    .main .show-infos-tab .tab-item {
-      color: white; }
-      .main .show-infos-tab .tab-item:focus {
-        outline: none; }
     .main .show-infos-tab #telecine-logo {
       position: absolute;
       right: 0;
@@ -69,6 +100,9 @@
     display: flex; }
     .main .show-infos-details .tabs-content {
       display: flex; }
+      @media (min-width: 319px) and (max-width: 767px) {
+        .main .show-infos-details .tabs-content {
+          flex-direction: column; } }
       .main .show-infos-details .tabs-content-typo {
         color: white;
         font-size: 1rem;
@@ -83,6 +117,12 @@
         display: flex;
         align-items: center;
         margin-right: 2rem; }
+        @media (min-width: 319px) and (max-width: 767px) {
+          .main .show-infos-details .tabs-content .actions {
+            justify-content: center;
+            margin-right: 0;
+            margin-bottom: 2rem;
+            align-items: flex-start; } }
         .main .show-infos-details .tabs-content .actions-item {
           display: flex;
           align-items: center;
@@ -98,7 +138,11 @@
           .main .show-infos-details .tabs-content .actions-item img {
             margin-bottom: 5px; }
           .main .show-infos-details .tabs-content .actions-item p {
-            margin-bottom: 0; }
+            margin-bottom: 0;
+            text-align: center; }
+            @media (min-width: 319px) and (max-width: 767px) {
+              .main .show-infos-details .tabs-content .actions-item p {
+                font-size: .8rem; } }
       .main .show-infos-details .tabs-content .cast {
         background-color: rgba(255, 255, 255, 0.1);
         margin: 0 10px;
