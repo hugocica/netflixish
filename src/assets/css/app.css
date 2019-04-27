@@ -1,4 +1,4 @@
-.main:before, .main .show-infos-meta .genre:after, .main .show-infos-tab:before {
+.main:before, .main .tabs-actions:before, .main .episodes-wrapper:before, .main .show-infos-meta .genre:after {
   content: "";
   position: absolute;
   display: block; }
@@ -7,32 +7,189 @@
   font-family: "Nunito";
   font-size: 16px; }
 
+body {
+  background-color: #131719;
+  overflow: hidden; }
+  @media (min-width: 319px) and (max-width: 767px) {
+    body {
+      overflow: auto; } }
+
+#loading-gif {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center; }
+
 .main {
   width: 100vw;
   height: 100vh;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 100% auto;
+  background-position: top left;
   overflow: hidden; }
+  @media (min-width: 319px) and (max-width: 767px) {
+    .main {
+      height: auto;
+      background-size: auto 108vh;
+      background-position: top center; } }
   .main:before {
     background: radial-gradient(circle, transparent, black);
     width: 100%;
     height: 100%; }
+    @media (min-width: 319px) and (max-width: 767px) {
+      .main:before {
+        height: calc(100% + 30px); } }
   .main-container {
     position: relative;
     z-index: 1; }
+  .main .close-icon {
+    position: absolute;
+    right: 5rem;
+    top: 2rem;
+    width: 20px;
+    z-index: 999;
+    cursor: pointer; }
+    @media (min-width: 319px) and (max-width: 767px) {
+      .main .close-icon {
+        right: 2rem; } }
+  .main .tabs-wrapper .tab-item {
+    color: white; }
+    .main .tabs-wrapper .tab-item:focus {
+      outline: none; }
+  .main .tabs-actions {
+    box-shadow: none;
+    background-color: transparent;
+    position: relative; }
+    .main .tabs-actions:before {
+      background-color: rgba(255, 255, 255, 0.4);
+      width: 100%;
+      height: 2px;
+      bottom: 0; }
+  .main .episodes-wrapper {
+    position: absolute;
+    right: 0;
+    padding: 5rem 5rem 0;
+    max-width: 35vw; }
+    @media (max-width: 1200px) {
+      .main .episodes-wrapper {
+        padding-right: 0;
+        max-width: 50vw; } }
+    @media (min-width: 319px) and (max-width: 767px) {
+      .main .episodes-wrapper {
+        position: relative;
+        max-width: 100vw;
+        width: 100vw;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 9rem; } }
+    .main .episodes-wrapper:before {
+      background: linear-gradient(90deg, transparent 5%, #131719 95%);
+      width: 100vw;
+      height: 100%;
+      top: 0;
+      left: -40vw; }
+      @media (min-width: 319px) and (max-width: 767px) {
+        .main .episodes-wrapper:before {
+          content: none; } }
+    .main .episodes-wrapper .tabs-wrapper button {
+      min-width: 0;
+      width: 70px; }
+  .main .episodes-list {
+    height: calc(100vh - 335px); }
+    @media (max-width: 1200px) {
+      .main .episodes-list {
+        height: calc(100vh - 368px); } }
+    @media (min-width: 319px) and (max-width: 767px) {
+      .main .episodes-list {
+        height: auto; } }
+    .main .episodes-list .episode-list-item {
+      padding: 0; }
+      .main .episodes-list .episode-list-item.collapsed {
+        padding-right: 30px; }
+    .main .episodes-list .episode-header {
+      display: grid;
+      grid-template-columns: 2fr 0.2fr 0.2fr;
+      align-items: center; }
+    .main .episodes-list .episode-duration {
+      color: white;
+      margin-right: 15px; }
+    .main .episodes-list .episode-preview-image {
+      max-width: 100%; }
+  .main .tabs-content {
+    display: flex; }
+    @media (min-width: 319px) and (max-width: 767px) {
+      .main .tabs-content {
+        flex-direction: column; } }
+    .main .tabs-content-typo {
+      color: white;
+      font-size: 1rem;
+      font-family: "Nunito"; }
+    .main .tabs-content .section-title {
+      color: white;
+      text-transform: uppercase;
+      font-size: 1rem;
+      font-family: "Nunito";
+      letter-spacing: 2px; }
+    .main .tabs-content .actions {
+      display: flex;
+      align-items: center;
+      margin-right: 2rem; }
+      @media (min-width: 319px) and (max-width: 767px) {
+        .main .tabs-content .actions {
+          justify-content: center;
+          margin-right: 0;
+          margin-bottom: 2rem;
+          align-items: flex-start; } }
+      .main .tabs-content .actions-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin: 0 8px;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        width: 90px; }
+        .main .tabs-content .actions-item:first-of-type {
+          margin-left: 0; }
+        .main .tabs-content .actions-item img {
+          margin-bottom: 5px; }
+        .main .tabs-content .actions-item p {
+          margin-bottom: 0;
+          text-align: center; }
+          @media (min-width: 319px) and (max-width: 767px) {
+            .main .tabs-content .actions-item p {
+              font-size: .8rem; } }
+    .main .tabs-content .cast {
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: 0 10px;
+      padding: 15px 20px; }
+      .main .tabs-content .cast:first-of-type {
+        margin-left: 0; }
   .main .show-infos-meta {
     padding: 2rem 5rem; }
+    @media (min-width: 319px) and (max-width: 767px) {
+      .main .show-infos-meta {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 3rem;
+        position: absolute;
+        top: 0; } }
     .main .show-infos-meta .show-title {
       color: white;
       font-family: "Nunito";
       font-size: 3rem;
       font-weight: 700; }
+      @media (min-width: 319px) and (max-width: 767px) {
+        .main .show-infos-meta .show-title {
+          font-size: 2rem; } }
     .main .show-infos-meta .meta-info {
       color: rgba(255, 255, 255, 0.5);
       position: relative;
       font-family: "Nunito";
       text-transform: uppercase;
-      letter-spacing: 1px; }
+      letter-spacing: .5px; }
     .main .show-infos-meta .genre {
       margin-right: 20px; }
       .main .show-infos-meta .genre:after {
@@ -42,24 +199,22 @@
   .main .show-infos-container {
     position: fixed;
     width: 100%;
+    height: 207px;
     bottom: 0;
     background-color: #131719;
     color: white;
     padding: 2rem 5rem; }
+    @media (max-width: 1200px) {
+      .main .show-infos-container {
+        height: 240px; } }
+    @media (min-width: 319px) and (max-width: 767px) {
+      .main .show-infos-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        height: auto;
+        position: relative; } }
   .main .show-infos-tab {
-    box-shadow: none;
-    background-color: transparent;
-    position: relative;
     margin-bottom: 2rem; }
-    .main .show-infos-tab:before {
-      background-color: rgba(255, 255, 255, 0.4);
-      width: 100%;
-      height: 2px;
-      bottom: 0; }
-    .main .show-infos-tab .tab-item {
-      color: white; }
-      .main .show-infos-tab .tab-item:focus {
-        outline: none; }
     .main .show-infos-tab #telecine-logo {
       position: absolute;
       right: 0;
@@ -67,41 +222,3 @@
       opacity: .5; }
   .main .show-infos-details {
     display: flex; }
-    .main .show-infos-details .tabs-content {
-      display: flex; }
-      .main .show-infos-details .tabs-content-typo {
-        color: white;
-        font-size: 1rem;
-        font-family: "Nunito"; }
-      .main .show-infos-details .tabs-content .section-title {
-        color: white;
-        text-transform: uppercase;
-        font-size: 1rem;
-        font-family: "Nunito";
-        letter-spacing: 2px; }
-      .main .show-infos-details .tabs-content .actions {
-        display: flex;
-        align-items: center;
-        margin-right: 2rem; }
-        .main .show-infos-details .tabs-content .actions-item {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          flex-wrap: wrap;
-          flex-direction: column;
-          margin: 0 8px;
-          color: rgba(255, 255, 255, 0.5);
-          cursor: pointer;
-          width: 90px; }
-          .main .show-infos-details .tabs-content .actions-item:first-of-type {
-            margin-left: 0; }
-          .main .show-infos-details .tabs-content .actions-item img {
-            margin-bottom: 5px; }
-          .main .show-infos-details .tabs-content .actions-item p {
-            margin-bottom: 0; }
-      .main .show-infos-details .tabs-content .cast {
-        background-color: rgba(255, 255, 255, 0.1);
-        margin: 0 10px;
-        padding: 15px 20px; }
-        .main .show-infos-details .tabs-content .cast:first-of-type {
-          margin-left: 0; }
